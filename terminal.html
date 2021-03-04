@@ -31,18 +31,22 @@
 
 <body>
 	<script>
-		    shell.terminal(function(command, term){
-        console.log(command);
-    }, {
-        greetings: motd,
-        prompt: promptCurrent,
-        login: function(user, password, callback) {
-            if (user == 'demo' && password == 'secret') {
-                callback('SECRET TOKEN');
-            } else {
-                callback(null);
+		jQuery(document).ready(function($) {
+        $('body').terminal("rpc_demo.php", {
+            login: true,
+            greetings: "You are authenticated",
+            completion: true,
+            processRPCResponse: function(data) {
+                if (typeof data === 'string' || data instanceof Array) {
+                    this.echo(data);
+                } else if (data && typeof data === 'object') {
+                    var str = Object.keys(data).map(function(key) {
+                        return '[[b;#fff;]' + key + ']: ' + data[key];
+                    }).join('\n');
+                    this.echo(str);
+                }
             }
-        }
+        });
     });
 	</script>
 </body>
