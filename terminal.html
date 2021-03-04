@@ -41,22 +41,6 @@
 			greetings: 'Welcome to my personal website.',
             login: f_login,
             prompt: '>',
-        });
-
-        if (terminal.token()) {
-            terminal.logout();
-        }
-
-    });
-
-    function f_login(user, password, callback) {
-        if (user == 'james' && password == 'lukin') {
-            callback('SECRET TOKEN');
-        } else {
-            callback(null);
-        }
-    }
-		$('body').terminal({
 			help: function() {
 				this.echo('Commands: \n'
 						  + 'launch - enter my page \n' 
@@ -66,7 +50,23 @@
 			launch: function() {
 				this.echo('')
 			}
-		})
+        });
+
+        if (terminal.token()) {
+            terminal.logout();
+        }
+		
+		
+			
+    });
+
+    function f_login(user, password, callback) {
+        if (user == 'james' && password == 'lukin') {
+            callback('SECRET TOKEN');
+        } else {
+            callback(null);
+        }
+    }
 	</script>
 </body>
 
