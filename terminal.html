@@ -37,7 +37,7 @@
 <body>
 	<script>
 		$('body').terminal({
-			name: function (name) {
+			myname: function (name) {
 				this.echo('Hello, ' + name +
 					'. Welcome to my personal page.');
 			},
@@ -52,7 +52,6 @@
 		}, {
 			greetings:'jxmeslukin'
 		});
-		$('#term_demo').terminal('service.php', {login: true});
 	</script>
 </body>
 
