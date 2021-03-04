@@ -35,9 +35,9 @@
 		$(document).ready(function(){
         var terminal = $('body').terminal(function(command, term) {
         }, {
-            greetings: 'Javascript Interpreter',
+            greetings: 'Welcome to my personal page.',
             login: f_login,
-            prompt: '|'
+            prompt: '>'
         });
 
         if (terminal.token()) {
@@ -47,7 +47,7 @@
     });
 
     function f_login(user, password, callback) {
-        if (user == 'demo' && password == 'teste') {
+        if (user == 'jxmes' && password == 'lukin') {
             callback('SECRET TOKEN');
         } else {
             callback(null);
