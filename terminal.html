@@ -40,9 +40,10 @@
 		$(document).ready(function(){
         var terminal = $('body').terminal(function(command, term) {
         }, {
+			greetings: 'Welcome to my personal website.',
             login: f_login,
             prompt: '>',
-			greetings: 'Welcome to my personal website.'
+			
         });
 
         if (terminal.token()) {
