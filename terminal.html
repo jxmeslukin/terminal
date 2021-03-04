@@ -34,29 +34,15 @@
 <body>
 	<script>
 		
-		figlet.defaults({fontPath: 'https://unpkg.com/figlet@1.4.0/fonts/'});
-		figlet.preloadFonts(["Standard", "Slant"], ready);
-		
-		var term;
-		
-		function ready() {
-    term = $('body').terminal(function(cmd) {
-        // echo function will run it in each render,
-        // so text can be resized based on cols
-        this.echo(() => render(cmd));
-    }, {
-        greetings: function() {
-            return render('jxmeslukin', 'Slant') +
-                `\n[[;rgba(255,255,255,0.99);]My Personal Terminal. Login to access.\n`;
-        }
-    });
+
 }
 		
 		$(document).ready(function(){
         var terminal = $('body').terminal(function(command, term) {
         }, {
             login: f_login,
-            prompt: '>'
+            prompt: '>',
+			greetings: 'Welcome to my personal website.'
         });
 
         if (terminal.token()) {
