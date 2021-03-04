@@ -5,26 +5,21 @@
 	<meta http-equiv="content-type"
 		content="text/html; charset=UTF-8">
 
-	<meta name="viewport" content="width=device-width,
-		minimum-scale=1,initial-scale=1">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
-	<script src=
-		"https://code.jquery.com/jquery-3.3.1.min.js">
-	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-	<script src=
-"https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js">
-	</script>
+	<script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
 
-	<link rel="stylesheet" href=
-"https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css" />
+	<script src="https://unpkg.com/js-polyfills/keyboard.js"></script>
 
 	<style type="text/css">
 		.terminal,
 		span,
 		.cmd,
 		div {
-			--color: rgba(0, 128, 0, 0.99);
+			--color: rgba(77, 72, 72, 0.99);
 		}
 
 		.terminal,
@@ -36,22 +31,23 @@
 
 <body>
 	<script>
-		$('body').terminal({
-			myname: function (name) {
-				this.echo('Hello, ' + name +
-					'. Welcome to my personal page.');
-			},
-			author: function () {
-				this.echo('James Lukin');
-			},
-			help: function () {
-				this.echo('name - name command. enter '
-				+ 'your name as argument \n'
-				+ 'author - the author of the page \n');
-			},
-		}, {
-			greetings:'jxmeslukin'
-		});
+		jQuery(document).ready(function($) {
+        $('body').terminal("rpc_demo.php", {
+            login: true,
+            greetings: "You are authenticated",
+            completion: true,
+            processRPCResponse: function(data) {
+                if (typeof data === 'string' || data instanceof Array) {
+                    this.echo(data);
+                } else if (data && typeof data === 'object') {
+                    var str = Object.keys(data).map(function(key) {
+                        return '[[b;#fff;]' + key + ']: ' + data[key];
+                    }).join('\n');
+                    this.echo(str);
+                }
+            }
+        });
+    });
 	</script>
 </body>
 
