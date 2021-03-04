@@ -58,12 +58,13 @@
     function f_login(user, password, callback) {
         if (user == 'james' && password == 'lukin') {
             callback('SECRET TOKEN');
+			commands();
         } else {
             callback(null);
         }
     }
 		
-	$(function() {
+	(function commands() {
     $('#body').terminal({}, {
         help: function() {
 				this.echo('Commands: \n'
