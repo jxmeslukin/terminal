@@ -41,7 +41,15 @@
 			greetings: 'Welcome to my personal website.',
             login: f_login,
             prompt: '>',
-			
+			help: function() {
+				this.echo('Commands: \n'
+						  + 'launch - enter my page \n' 
+						  + 'secret - shhh \n'
+						  + 'git - enter git repository list')
+			}
+			launch: function() {
+				this.echo('')
+			}
         });
 
         if (terminal.token()) {
@@ -57,6 +65,7 @@
             callback(null);
         }
     }
+		
 	</script>
 </body>
 
