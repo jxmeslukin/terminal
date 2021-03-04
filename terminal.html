@@ -32,32 +32,27 @@
 
 <body>
 	<script>
-		$('body').terminal({
-			myname: function (name) {
-				this.echo('Hello, ' + name +
-					'. Welcome to my personal page.');
-			},
-			author: function () {
-				this.echo('James Lukin');
-			},
-			help: function () {
-				this.echo('name - name command. enter '
-				+ 'your name as argument \n'
-				+ 'author - the author of the page \n');
-			},
-		},
-		{
-			greetings:'jxmeslukin'
-		},{
-			login: function(user, password, callback) {
-            if (user == 'demo' && password == 'secret') {
-                callback('SECRET TOKEN');
-            } else {
-                callback(null);
-            }
-		} 
-		
-		);
+		$(document).ready(function(){
+        var terminal = $('body').terminal(function(command, term) {
+        }, {
+            greetings: 'Javascript Interpreter',
+            login: f_login,
+            prompt: '|'
+        });
+
+        if (terminal.token()) {
+            terminal.logout();
+        }
+
+    });
+
+    function f_login(user, password, callback) {
+        if (user == 'demo' && password == 'teste') {
+            callback('SECRET TOKEN');
+        } else {
+            callback(null);
+        }
+    }
 	</script>
 </body>
 
