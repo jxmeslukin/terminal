@@ -14,6 +14,7 @@
 
 	<link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css" />
 	<script src="https://unpkg.com/js-polyfills/keyboard.js"></script>
+	<script src="https://unpkg.com/figlet/lib/figlet.js"></script>
 
 	<style type="text/css">
 		.terminal,
@@ -32,10 +33,28 @@
 
 <body>
 	<script>
+		
+		figlet.defaults({fontPath: 'https://unpkg.com/figlet@1.4.0/fonts/'});
+		figlet.preloadFonts(["Standard", "Slant"], ready);
+		
+		var term;
+		
+		function ready() {
+    term = $('body').terminal(function(cmd) {
+        // echo function will run it in each render,
+        // so text can be resized based on cols
+        this.echo(() => render(cmd));
+    }, {
+        greetings: function() {
+            return render('jxmeslukin', 'Slant') +
+                `\n[[;rgba(255,255,255,0.99);]My Personal Terminal. Login to access.\n`;
+        }
+    });
+}
+		
 		$(document).ready(function(){
         var terminal = $('body').terminal(function(command, term) {
         }, {
-            greetings: 'Welcome to my personal page.',
             login: f_login,
             prompt: '>'
         });
